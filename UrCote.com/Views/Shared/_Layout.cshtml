@@ -6,6 +6,36 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("styles", false)
+
+
+    <!-- core libs -->
+    <link href="~/Content/CodeMirror/lib/codemirror.css" rel="stylesheet" />
+    <script src="~/Content/CodeMirror/lib/codemirror.js"></script>
+
+    <!-- format line -->
+    <script src="~/Content/CodeMirror/addon/format/formatting.js"></script>
+    <!-- selection -->
+    <script src="~/Content/CodeMirror/addon/selection/selection-pointer.js"></script>
+
+    <!-- search -->
+    <script src="~/Content/CodeMirror/addon/search/search.js"></script>
+    <script src="~/Content/CodeMirror/addon/search/searchcursor.js"></script>
+
+    <!-- dialog -->
+    <link href="~/Content/CodeMirror/addon/dialog/dialog.css" rel="stylesheet" />
+    <script src="~/Content/CodeMirror/addon/dialog/dialog.js"></script>
+
+    <!-- modes-->
+    <script src="~/Content/CodeMirror/mode/javascript/javascript.js"></script>
+    <script src="~/Content/CodeMirror/mode/css/css.js"></script>
+    <script src="~/Content/CodeMirror/mode/xml/xml.js"></script>
+    <script src="~/Content/CodeMirror/mode/vbscript/vbscript.js"></script>
+    <script src="~/Content/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+
+
+
+
     <script type="text/javascript">
         var appInsights=window.appInsights||function(config){
             function r(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},u=document,e=window,o="script",s=u.createElement(o),i,f;for(s.src=config.url||"//az416426.vo.msecnd.net/scripts/a/ai.0.js",u.getElementsByTagName(o)[0].parentNode.appendChild(s),t.cookie=u.cookie,t.queue=[],i=["Event","Exception","Metric","PageView","Trace","Ajax"];i.length;)r("track"+i.pop());return r("setAuthenticatedUserContext"),r("clearAuthenticatedUserContext"),config.disableExceptionTracking||(i="onerror",r("_"+i),f=e[i],e[i]=function(config,r,u,e,o){var s=f&&f(config,r,u,e,o);return s!==!0&&t["_"+i](config,r,u,e,o),s}),t
@@ -37,7 +67,7 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container body-content" style="padding-top: 20px">
         @RenderBody()
         <hr />
         <footer>
