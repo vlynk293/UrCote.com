@@ -3,7 +3,17 @@
 }
 
 @section styles{
+    <style>
+    </style>
+
 }
+
+<select id="select-mode">
+    <option value="1">css</option>
+    <option value="2">c#</option>
+    <option value="3">mixed html/css/javascript</option>
+</select>
+
 <form>
     <textarea id="code" name="code">
         <html style="color: green">
@@ -29,21 +39,14 @@
         <body>
             <h1>Mixed HTML Example</h1>
             <script>
-      function jsFunc(arg1, arg2) {
-        if (arg1 && arg2) document.body.innerHTML = "achoo";
-      }
+                function jsFunc(arg1, arg2) {
+                    if (arg1 && arg2) document.body.innerHTML = "achoo";
+                }
             </script>
         </body>
     </html>
 </textarea>
 </form>
-
-
-
-
-
-
-
 
 @section scripts{
     <script>
@@ -53,49 +56,143 @@
                 matches: /\/x-handlebars-template|\/x-mustache/i,
                 mode: null
             },
-                          {
-                              matches: /(text|application)\/(x-)?vb(a|script)/i,
-                              mode: "vbscript"
-                          }]
+            {
+                matches: /(text|application)\/(x-)?vb(a|script)/i,
+                mode: "vbscript"
+            }]
         };
+
+
         var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-            lineNumber: true,
-            mode: mixedMode,
-            selectionPointer: true
+            mode: "text/x-java",
+            lineNumbers: true,
+            selectionPointer: true,
+            styleActiveLine: true,
+            lineWrapping: true,
+            keyMap: "sublime",
+            autoCloseBrackets: true,
+            matchBrackets: true,
+            showCursorWhenSelecting: true,
+            matchTags: { bothTags: true },
+            lineNumbers: true,
+            lineWrapping: true,
+            foldGutter: true,
+            gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+            extraKeys: { "Ctrl-Space": "autocomplete" },
         });
 
 
-        CodeMirror.commands["selectAll"](editor);
+        $(document).ready(function () {
+            $('#select-mode').change(function () {
+                editor.setOption("mode", mixedMode);
+            })
+        })
 
-        function getSelectedRange() {
-            return { from: editor.getCursor(true), to: editor.getCursor(false) };
-        }
+        // CodeMirror.commands["selectAll"](editor);
 
-        function autoFormatSelection() {
-            var range = getSelectedRange();
-            editor.autoFormatRange(range.from, range.to);
-        }
+        //function getSelectedRange() {
+        //    return { from: editor.getCursor(true), to: editor.getCursor(false) };
+        //}
 
-        function commentSelection(isComment) {
-            var range = getSelectedRange();
+        //function autoFormatSelection() {
+        //    var range = getSelectedRange();
+        //    editor.autoFormatRange(range.from, range.to);
+        //}
 
-            editor.commentRange(isComment, range.from, range.to);
-        }
+        //function commentSelection(isComment) {
+        //    var range = getSelectedRange();
+
+        //    editor.commentRange(isComment, range.from, range.to);
+        //}
 
 
-        // key commands
+        //------ key commands ------
+
+        // save
         document.addEventListener("keydown", function (e) {
+            // save code
             if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
                 e.preventDefault();
                 alert("saved!");
             }
         }, false);
 
-        document.addEventListener("keydown", function (e) {
-            if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
-                e.preventDefault();
-                alert("saved!");
-            }
-        }, false);
+        //// ** format code
+        //var passStep1 = false;
+        //// format code:  Ctrl + K
+        //document.addEventListener("keydown", function (e) {
+        //    if ((navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey) && e.keyCode == 75) {
+        //        e.preventDefault();
+        //        passStep1 = true;
+        //    }
+        //}, false);
+        //// then Ctrl + D
+        //document.addEventListener("keydown", function (e) {
+        //    if (passStep1 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey) && e.keyCode == 68) {
+        //        e.preventDefault();
+        //        var totalLines = editor.lineCount();
+        //        editor.autoFormatRange({ line: 0, ch: 0 }, { line: totalLines });
+        //        passStep1 = false;
+        //    }
+        //}, false);
+
+        //// then Ctrl + C
+        //document.addEventListener("keydown", function (e) {
+        //    if ((passStep1 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey) && e.keyCode == 67)
+        //        || (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey) && e.keyCode == 191) {
+        //        e.preventDefault();
+        //        var selectedRange = getSelectedRange();
+        //        var currentLine = selectedRange.from.line;
+
+        //        // if nothing selected, comment the whole line
+        //        if (selectedRange.from.line == selectedRange.to.line && selectedRange.from.ch == selectedRange.to.ch) {
+        //            selectedRange = {
+        //                from: { line: currentLine, ch: getNumberOfSpace(currentLine) },
+        //                to: { line: currentLine, ch: 9999 }
+        //            };
+        //            editor.commentRange(true, selectedRange.from, selectedRange.to);
+        //        } else {
+        //            editor.commentRange(true, selectedRange.from, selectedRange.to);
+        //        }
+
+        //        passStep1 = false;
+        //    }
+        //}, false);
+
+        //document.addEventListener("keydown", function (e) {
+        //    if (passStep1 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey) && e.keyCode == 85) {
+        //        e.preventDefault();
+        //        var selectedRange = getSelectedRange();
+        //        var currentLine = selectedRange.from.line;
+        //        console.log(selectedRange);
+        //        // if nothing selected, comment the whole line
+        //        if (selectedRange.from.line == selectedRange.to.line && selectedRange.from.ch == selectedRange.to.ch) {
+        //            selectedRange = {
+        //                from: { line: currentLine, ch: getNumberOfSpace(currentLine) },
+        //                to: { line: currentLine, ch: 9999 }
+        //            };
+        //            editor.commentRange(false, selectedRange.from, selectedRange.to);
+        //        } else {
+        //            editor.commentRange(false, selectedRange.from, selectedRange.to);
+        //        }
+
+        //        passStep1 = false;
+        //    }
+        //}, false);
+
+
+        //function getNumberOfSpace(lineNum) {
+        //    var text = editor.lineInfo(lineNum).text;
+        //    var result = 0;
+        //    for (i in text) {
+        //        if (text[i] == " ") {
+        //            result++;
+        //        } else {
+        //            break;
+        //        }
+        //    }
+        //    return result;
+        //}
+
     </script>
 }

@@ -7,12 +7,13 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", false)
-
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
 
     <!-- core libs -->
     <link href="~/Content/CodeMirror/lib/codemirror.css" rel="stylesheet" />
+    <link href="~/Content/CodeMirror/addon/fold/foldgutter.css" rel="stylesheet" />
     <script src="~/Content/CodeMirror/lib/codemirror.js"></script>
-
+    <link href="~/Content/CodeMirror/addon/hint/show-hint.css" rel="stylesheet" />
     <!-- format line -->
     <script src="~/Content/CodeMirror/addon/format/formatting.js"></script>
     <!-- selection -->
@@ -32,9 +33,33 @@
     <script src="~/Content/CodeMirror/mode/xml/xml.js"></script>
     <script src="~/Content/CodeMirror/mode/vbscript/vbscript.js"></script>
     <script src="~/Content/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="~/Content/CodeMirror/mode/htmlembedded/htmlembedded.js"></script>
+    <script src="~/Content/CodeMirror/mode/clike/clike.js"></script>
 
+    <!-- addons-->
+    <script src="~/Content/CodeMirror/addon/selection/active-line.js"></script>
+    <script src="~/Content/CodeMirror/addon/edit/matchbrackets.js"></script>
+    <script src="~/Content/CodeMirror/addon/fold/xml-fold.js"></script>
+    <script src="~/Content/CodeMirror/addon/edit/matchtags.js"></script>
+    <script src="~/Content/CodeMirror/addon/comment/comment.js"></script>
+    <script src="~/Content/CodeMirror/addon/wrap/hardwrap.js"></script>
+    <script src="~/Content/CodeMirror/addon/fold/foldcode.js"></script>
+    <script src="~/Content/CodeMirror/addon/fold/foldgutter.js"></script>
+    <script src="~/Content/CodeMirror/addon/fold/markdown-fold.js"></script>
+    <script src="~/Content/CodeMirror/addon/fold/comment-fold.js"></script>
+    <script src="~/Content/CodeMirror/addon/fold/brace-fold.js"></script>
+    <script src="~/Content/CodeMirror/mode/markdown/markdown.js"></script>
+    <!-- hint -->
+    <script src="~/Content/CodeMirror/addon/hint/show-hint.js"></script>
+    <script src="~/Content/CodeMirror/addon/hint/anyword-hint.js"></script>
+    <script src="~/Content/CodeMirror/addon/hint/xml-hint.js"></script>
+    <script src="~/Content/CodeMirror/addon/hint/css-hint.js"></script>
+    <script src="~/Content/CodeMirror/addon/hint/html-hint.js"></script>
+    <script src="~/Content/CodeMirror/addon/hint/javascript-hint.js"></script>
+    <script src="~/Content/CodeMirror/addon/hint/sql-hint.js"></script>
 
-
+    <!-- key map-->
+    <script src="~/Content/CodeMirror/keymap/sublime.js"></script>
 
     <script type="text/javascript">
         var appInsights=window.appInsights||function(config){

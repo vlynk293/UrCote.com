@@ -9,8 +9,8 @@ namespace UrCote.com.Controllers
     [RoutePrefix("")]
     public class HomeController : Controller
     {
-        [Route("{cote?}")]
-        public ActionResult Index(string cote)
+        [Route("{link?}")]
+        public ActionResult Index(string link)
         {
 
 
